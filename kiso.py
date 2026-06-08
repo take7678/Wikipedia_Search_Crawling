@@ -120,3 +120,83 @@ avg_7 = sum_7 / count_7
 for name, score in scores_7.items():
     if score > avg_7:
         print(name, score)
+
+
+print("08_1-1")
+numbers_08_1 = [10, 5, 8, 20, 3, 15]
+
+def new_list():
+    new_list081 = []
+    for n in numbers_08_1:
+        if n > 10:
+            bai = n * 2
+            new_list081.append(bai)
+    return bai
+
+print(new_list())
+
+print("08_1-2")
+data_082 = {
+    "Python": 80,
+    "Java": 60,
+    "C": 50,
+    "JavaScript": 90
+}
+
+def over70():
+    for gengo, score_812 in data_082.items():
+        if score_812 > 70:
+            print(gengo, score_812)
+over70()
+
+print("08_1-3")
+prices = [100, 110, 105, 120]
+
+def avg0813(X):
+    sum_8 = 0
+    count_8 = 0
+    for n in X:
+        sum_8 += n
+        count_8 += 1
+
+    avg_8 = sum_8 / count_8
+    return avg_8
+
+print(avg0813(prices))
+
+print("08_1-4")
+prices_0813 = [100, 105, 102, 110, 115]
+
+def up_down(X):
+    hikaku = X[0]
+    new_up_down = []
+    for n in X[1:]:
+        if hikaku < n :
+            new_up_down.append("UP")
+            hikaku = n
+        else:
+            new_up_down.append("DOWN")
+            hikaku = n
+    return new_up_down
+print(up_down(prices_0813))
+
+print("08_1-5")
+
+def input_number():
+    try:
+        user_input = int(input("数字を入力してください"))
+        print(user_input)
+    except:
+        print("数字を入力してください")
+
+input_number()
+
+print("08_1-6")
+
+with open("test.txt", "w", encoding= "utf-8") as f:
+    f.write("1行目だよ\n")
+with open("test.txt", "a", encoding= "utf-8") as f:
+    f.write("2行目だよん")
+with open("test.txt", "r", encoding= "utf-8") as f:
+    a = f.read()
+    print(a)
