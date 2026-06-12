@@ -200,3 +200,9 @@ with open("test.txt", "a", encoding= "utf-8") as f:
 with open("test.txt", "r", encoding= "utf-8") as f:
     a = f.read()
     print(a)
+
+def add_99(a, b):
+
+    return a + b
+
+
