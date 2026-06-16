@@ -7,7 +7,8 @@ import csv
 driver = webdriver.Chrome()
 driver.get("https://ja.wikipedia.org/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8")
 
-user_input = input("調べたいキーワードを教えてください(A,Bのように複数でも良いよ)")
+#
+user_input = input("調べたいキーワードを教えてください(A　Bのように複数でも良いよ)")
 keyword = [n.strip() for n in user_input.split("　")]
 
 for n in keyword:

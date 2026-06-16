@@ -1,0 +1,85 @@
+from selenium import webdriver as selenium_webdriver
+from selenium.webdriver.common.by import By
+import time
+
+from appium import webdriver as appium_webdriver
+from appium.options.android import UiAutomator2Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as E
+from appium.webdriver.common.appiumby import AppiumBy
+from datetime import datetime
+
+web_driver = selenium_webdriver.Chrome()
+web_driver.get("https://news.yahoo.co.jp/ranking/access/news")
+
+time.sleep(3)
+
+elements = web_driver.find_elements(By.CSS_SELECTOR, "ol.newsFeed_list li")
+
+titles = []
+
+for i, e in enumerate(elements[:10], start=1):
+    lines = [l for l in e.text.split("\n") if l.strip() != ""]
+    
+    if len(lines) >= 2:
+        title = lines[1]
+        titles.append(f"{i}. {title}")
+
+web_driver.quit()
+
+text = "【ニュースランキング】\n\n" + "\n".join(titles)
+print(text)
+
+options = UiAutomator2Options()
+options.set_capability("platformName", "Android")
+options.set_capability("deviceName", "Android Emulator")
+options.set_capability("automationName", "UiAutomator2")
+options.set_capability("appPackage", "com.google.android.keep")
+options.set_capability("appActivtivity","com.google.android.keep.activities.BrowseActivity")
+mobile_driver = appium_webdriver.Remote(
+    command_executor="http://localhost:4723",
+    options=options
+)
+
+wait = WebDriverWait(mobile_driver, 10)
+
+try:
+    first_tag = wait.until(
+        E.presence_of_element_located(
+            (AppiumBy.ID,"com.google.android.keep:id/skip_welcome")
+        )
+    )
+    first_tag.click()
+except:
+    pass
+
+plus_btn = wait.until(
+    E.presence_of_element_located(
+        (AppiumBy.ID,"com.google.android.keep:id/speed_dial_create_close_button")
+    )
+)
+plus_btn.click()
+
+note_btn = wait.until(
+    E.presence_of_element_located(
+        (AppiumBy.ID,"com.google.android.keep:id/new_note_button")
+    )
+)
+note_btn.click()
+
+title_box = wait.until(
+    E.presence_of_element_located(
+        (AppiumBy.ID,"com.google.android.keep:id/editable_title")
+    )
+)
+title_box.click
+today = datetime.now().strftime("%Y/%m/%d")
+title_box.send_keys(f"{today} 朝のニュースランキング")
+
+note_box = wait.until(
+    E.presence_of_element_located(
+        (AppiumBy.ID,"com.google.android.keep:id/edit_note_text")
+    )
+)
+note_box.click
+note_box.send_keys(text)
