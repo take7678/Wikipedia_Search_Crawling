@@ -33,7 +33,7 @@ except:
 #検索BOX
 serch_box = wait.until(
     E.presence_of_element_located(
-        (AppiumBy.XPATH, '//*[@text="ここで検索"]')
+        (AppiumBy.XPATH, '//android.widget.TextView[@text="ここで検索"]')
     )
 )
 serch_box.click()

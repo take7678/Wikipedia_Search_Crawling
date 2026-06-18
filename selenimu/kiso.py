@@ -194,9 +194,9 @@ input_number()
 print("08_1-6")
 
 with open("test.txt", "w", encoding= "utf-8") as f:
-    f.write("1行目だよ\n")
+    f.write("1行目\n")
 with open("test.txt", "a", encoding= "utf-8") as f:
-    f.write("2行目だよん")
+    f.write("2行目")
 with open("test.txt", "r", encoding= "utf-8") as f:
     a = f.read()
     print(a)
@@ -204,5 +204,3 @@ with open("test.txt", "r", encoding= "utf-8") as f:
 def add_99(a, b):
 
     return a + b
-
-

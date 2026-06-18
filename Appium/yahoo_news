@@ -35,7 +35,7 @@ options.set_capability("platformName", "Android")
 options.set_capability("deviceName", "Android Emulator")
 options.set_capability("automationName", "UiAutomator2")
 options.set_capability("appPackage", "com.google.android.keep")
-options.set_capability("appActivtivity","com.google.android.keep.activities.BrowseActivity")
+options.set_capability("appActivity","com.google.android.keep.activities.BrowseActivity")
 mobile_driver = appium_webdriver.Remote(
     command_executor="http://localhost:4723",
     options=options
@@ -72,14 +72,22 @@ title_box = wait.until(
         (AppiumBy.ID,"com.google.android.keep:id/editable_title")
     )
 )
-title_box.click
+title_box.click()
 today = datetime.now().strftime("%Y/%m/%d")
-title_box.send_keys(f"{today} 朝のニュースランキング")
+title_box.send_keys(f"{today} のニュースランキング")
 
 note_box = wait.until(
     E.presence_of_element_located(
         (AppiumBy.ID,"com.google.android.keep:id/edit_note_text")
     )
 )
-note_box.click
-note_box.send_keys(text)
+
+mobile_driver.set_clipboard_text(text)
+
+note_box.click()
+time.sleep(1)
+
+mobile_driver.press_keycode(279)
+time.sleep(2)
+
+mobile_driver.back()

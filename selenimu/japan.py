@@ -8,8 +8,11 @@ driver = webdriver.Chrome()
 driver.get("https://ja.wikipedia.org/wiki/都道府県")
 
 
+
 with open("ジャパン.txt", "r", encoding="utf-8") as f:
-    japan = [line.strip() for line in f]
+    japan = []
+    for line in f:
+        japan.append(line.strip())
 
 
 with open("japan.csv", "w", newline="", encoding="utf-8-sig") as f:
@@ -27,8 +30,7 @@ for n in japan:
         time.sleep(2)
 
         p = driver.find_element(
-            By.XPATH,
-            "//table[contains(@class,'infobox')]/following-sibling::p[1]"
+            By.XPATH,"//table[contains(@class,'infobox')]/following-sibling::p[1]"
         )
 
         text = p.text
