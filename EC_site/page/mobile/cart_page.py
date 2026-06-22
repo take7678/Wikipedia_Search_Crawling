@@ -5,7 +5,7 @@ class MobileCartPage:
 
     def item(self):
 
-        self.mobile_driver.save_screenshot("mobile_cart.png")
+        self.mobile_driver.save_screenshot("screenshots/mobile_cart.png")
 
         cart_item = self.mobile_driver.find_element(
             "xpath", "//tr"

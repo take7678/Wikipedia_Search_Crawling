@@ -26,8 +26,6 @@ home_page.move_cart_page()
 
 cart_page = CartPage(web_driver)
 cart_page.screenshot()
-cart_page.save_csv()
-
 
 mobile_driver = get_mobile_driver()
 

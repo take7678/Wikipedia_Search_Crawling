@@ -20,6 +20,8 @@ class HomePage:
 
 
     def add_product(self):
+        self.web_driver.execute_script("window.scrollBy(0, 500);")
+        
         product1 = self.web_driver.find_element(By.CSS_SELECTOR, "a[data-product-id='1']")
         self.web_driver.execute_script("arguments[0].click();", product1)
 

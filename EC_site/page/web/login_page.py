@@ -26,6 +26,6 @@ class LoginPage:
         password_box.send_keys(password)
 
         login_btn = self.web_driver.find_element(By.CSS_SELECTOR, "button[data-qa='login-button']")
-        login_btn.click()
+        self.web_driver.execute_script("arguments[0].click();", login_btn)
 
     
