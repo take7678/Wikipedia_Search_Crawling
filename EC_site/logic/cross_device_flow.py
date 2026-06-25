@@ -11,9 +11,11 @@ from page.mobile.login_page import MobileLoginPage
 from page.mobile.cart_page import MobileCartPage
 
 
+#chromeを開きURLを渡しデモECサイト開く。
 web_driver = get_web_driver()
 web_driver.get("https://automationexercise.com/")
 
+#ECのホーム画面開く。
 home_page = HomePage(web_driver)
 home_page.move_login_page()
 
